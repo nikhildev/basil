@@ -1,0 +1,8 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "formatters",
+    srcs = ["concatinator.go"],
+    importpath = "basil/packages/libs/formatters",
+    visibility = ["//visibility:public"],
+)
