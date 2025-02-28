@@ -8,5 +8,5 @@ import (
 
 func main() {
 	v := rand.Int31n(1000000)
-	fmt.Printf(`%d bytes = %s\n`, v, humanize_filesize.GetHumanizedFilesize(&v))
+	fmt.Printf(`%d bytes = %s`, v, humanize_filesize.GetHumanizedFilesize(&v))
 }
