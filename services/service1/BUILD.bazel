@@ -1,21 +1,15 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
-go_library(
-    name = "service1_lib",
-    srcs = ["service1.go"],
-    importpath = "basil/services/service1",
-    visibility = ["//visibility:private"],
-    deps = ["//libraries/humanize_filesize"],
-)
-
 go_binary(
     name = "service1",
     embed = [":service1_lib"],
     visibility = ["//visibility:public"],
 )
 
-go_binary(
-    name = "serviceX",
-    embed = [":service1_lib"],
-    visibility = ["//visibility:public"],
+go_library(
+    name = "service1_lib",
+    srcs = ["service1.go"],
+    importpath = "basil/services/service1",
+    visibility = ["//visibility:private"],
+    deps = ["//libraries/humanize_filesize"],
 )
