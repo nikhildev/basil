@@ -9,7 +9,7 @@ go_binary(
 go_library(
     name = "service1_lib",
     srcs = ["service1.go"],
-    importpath = "basil/services/service1",
+    importpath = "github.com/nikhildev/basil/services/service1",
     visibility = ["//visibility:private"],
     deps = ["//libraries/humanize_filesize"],
 )

@@ -3,7 +3,7 @@ load("@rules_go//go:def.bzl", "go_library", "go_test")
 go_library(
     name = "humanize_filesize",
     srcs = ["humanize_filesize.go"],
-    importpath = "basil/libraries/humanize_filesize",
+    importpath = "github.com/nikhildev/basil/libraries/humanize_filesize",
     visibility = ["//visibility:public"],
 )
 

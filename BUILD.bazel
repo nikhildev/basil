@@ -1,6 +1,10 @@
 load("@gazelle//:def.bzl", "gazelle")
 
-gazelle(name = "gazelle")
+# gazelle:prefix github.com/nikhildev/basil
+# gazelle:proto file
+gazelle(
+    name = "gazelle",
+)
 
 gazelle(
     name = "gazelle-update-repos",
