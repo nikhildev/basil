@@ -1,9 +1,10 @@
 package main
 
 import (
-	"basil/libraries/humanize_filesize"
 	"fmt"
 	"math/rand"
+
+	"github.com/nikhildev/basil/libraries/humanize_filesize"
 )
 
 func main() {
