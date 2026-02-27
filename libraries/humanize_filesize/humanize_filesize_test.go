@@ -6,37 +6,53 @@ import (
 
 func TestHumanizeFilesize(t *testing.T) {
 	tests := []struct {
-		name          string
-		size_in_bytes *int32
-		expected      string
+		name        string
+		sizeInBytes int64
+		expected    string
 	}{
 		{
-			name:          "nil bytes",
-			size_in_bytes: nil,
-			expected:      "0 MB",
+			name:        "zero bytes",
+			sizeInBytes: 0,
+			expected:    "0 B",
 		},
 		{
-			name:          "2048 bytes",
-			size_in_bytes: int32Ptr(2048),
-			expected:      "0.0020 MB",
+			name:        "negative bytes",
+			sizeInBytes: -1,
+			expected:    "0 B",
 		},
 		{
-			name:          "0 bytes",
-			size_in_bytes: int32Ptr(0),
-			expected:      "0.0000 MB",
+			name:        "500 bytes",
+			sizeInBytes: 500,
+			expected:    "500 B",
+		},
+		{
+			name:        "2048 bytes",
+			sizeInBytes: 2048,
+			expected:    "2.00 KB",
+		},
+		{
+			name:        "1 MB",
+			sizeInBytes: 1048576,
+			expected:    "1.00 MB",
+		},
+		{
+			name:        "1.5 GB",
+			sizeInBytes: 1610612736,
+			expected:    "1.50 GB",
+		},
+		{
+			name:        "2 TB",
+			sizeInBytes: 2199023255552,
+			expected:    "2.00 TB",
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			result := GetHumanizedFilesize(tt.size_in_bytes)
+			result := HumanizeFilesize(tt.sizeInBytes)
 			if result != tt.expected {
-				t.Errorf("expected %s, got %s", tt.expected, result)
+				t.Errorf("HumanizeFilesize(%d) = %s, want %s", tt.sizeInBytes, result, tt.expected)
 			}
 		})
 	}
-}
-
-func int32Ptr(n int32) *int32 {
-	return &n
 }
