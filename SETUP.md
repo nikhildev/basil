@@ -2,7 +2,7 @@
 
 This repo needs the following to be installed
 
-- Go 1.24.0 `brew install go`
+- Go 1.26.0 `brew install go`
 - Bazelisk 7.3.1 `brew install bazelisk`
   - Note that Bazelisk has Bazel included, so you don't have to install Bazel separately
 - Go tools `go get golang.org/x/tools`
