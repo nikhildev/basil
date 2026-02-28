@@ -7,15 +7,23 @@ import (
 
 var ErrNegativeSize = errors.New("size cannot be negative")
 
-// GetHumanizedFilesize takes size_in_bytes as an int32 pointer and returns the size in megabytes.
-// Returns an error if the pointer is nil or the value is negative.
-func GetHumanizedFilesize(size_in_bytes *int32) (string, error) {
-	if size_in_bytes == nil {
-		return "", errors.New("size_in_bytes must not be nil")
+// HumanizeFilesize takes a size in bytes and returns a human-readable string
+// with an appropriate unit (B, KB, MB, GB, TB).
+func HumanizeFilesize(sizeInBytes int64) string {
+	if sizeInBytes < 0 {
+		return "0 B"
 	}
-	if *size_in_bytes < 0 {
-		return "", ErrNegativeSize
+
+	switch {
+	case sizeInBytes >= 1<<40:
+		return fmt.Sprintf("%.2f TB", float64(sizeInBytes)/float64(1<<40))
+	case sizeInBytes >= 1<<30:
+		return fmt.Sprintf("%.2f GB", float64(sizeInBytes)/float64(1<<30))
+	case sizeInBytes >= 1<<20:
+		return fmt.Sprintf("%.2f MB", float64(sizeInBytes)/float64(1<<20))
+	case sizeInBytes >= 1<<10:
+		return fmt.Sprintf("%.2f KB", float64(sizeInBytes)/float64(1<<10))
+	default:
+		return fmt.Sprintf("%d B", sizeInBytes)
 	}
-	size_in_megabytes := float64(*size_in_bytes) / (1024 * 1024)
-	return fmt.Sprintf("%.4f MB", size_in_megabytes), nil
 }

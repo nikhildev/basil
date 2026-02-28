@@ -1,19 +1,25 @@
 package main
 
 import (
-	"fmt"
+	"log/slog"
 	"math/rand"
 	"os"
 
 	"github.com/nikhildev/basil/libraries/humanize_filesize"
 )
 
+func formatSize(v int32) string {
+	return fmt.Sprintf("%d bytes = %s", v, humanize_filesize.GetHumanizedFilesize(&v))
+}
+
 func main() {
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
 	v := rand.Int31n(1000000)
-	humanized, err := humanize_filesize.GetHumanizedFilesize(&v)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
-	}
-	fmt.Printf("%d bytes = %s\n", v, humanized)
+	humanized := humanize_filesize.GetHumanizedFilesize(&v)
+
+	logger.Info("generated random filesize",
+		"bytes", v,
+		"humanized", humanized,
+	)
 }
