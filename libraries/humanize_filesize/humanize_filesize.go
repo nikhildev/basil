@@ -1,6 +1,11 @@
 package humanize_filesize
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+var ErrNegativeSize = errors.New("size cannot be negative")
 
 // HumanizeFilesize takes a size in bytes and returns a human-readable string
 // with an appropriate unit (B, KB, MB, GB, TB).

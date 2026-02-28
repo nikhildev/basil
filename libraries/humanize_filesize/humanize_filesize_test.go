@@ -1,10 +1,11 @@
 package humanize_filesize
 
 import (
+	"errors"
 	"testing"
 )
 
-func TestHumanizeFilesize(t *testing.T) {
+func TestGetHumanizedFilesize(t *testing.T) {
 	tests := []struct {
 		name        string
 		sizeInBytes int64
