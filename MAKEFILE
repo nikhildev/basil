@@ -1,11 +1,17 @@
-build:
-	echo 'test'
-
 gazelle:
 	bazel run //:gazelle
 
 build:
 	bazel build //...
 
+test:
+	bazel test //...
+
+clean:
+	bazel clean
+
 run-helloworld:
 	bazel build //packages/helloworld && bazel run //packages/helloworld
+
+run-service1:
+	bazel build //services/service1 && bazel run //services/service1
